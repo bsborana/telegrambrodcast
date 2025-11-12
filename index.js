@@ -20,7 +20,7 @@ app.post("/broadcast", async (req, res) => {
   let results = [];
 
   for (const token of BOT_TOKENS) {
-    const url = `https://api.telegram.org/bot${token}/sendMessage`;
+    const url = `https://api.telegram.org/bot${6579372811:AAFVr877XmXeCTA0wRh-joQRUKbd1_1SAgg}/sendMessage`;
     try {
       const response = await axios.post(url, {
         chat_id: CHAT_ID,
