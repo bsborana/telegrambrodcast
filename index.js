@@ -6,13 +6,13 @@ app.use(express.json());
 
 // Apne sabhi bot tokens yahan daalo
 const BOT_TOKENS = [
-  "TOKEN_1",
-  "TOKEN_2",
-  "TOKEN_3"
+  "6615271876:AAE6h3OtYFGfxF1I_SoJjtOwi6g5qYcXeAM",
+  "6933960726:AAEYF_QtbhUGqvWU-kp4ByJ4oQeR9oH0q-g",
+  "6579372811:AAFVr877XmXeCTA0wRh-joQRUKbd1_1SAgg"
 ];
 
 // Default chat_id (channel/group/user)
-const CHAT_ID = "@yourchannel_or_userid";
+const CHAT_ID = "-1002760349875";
 
 // Simple API route
 app.post("/broadcast", async (req, res) => {
