@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Telegram Broadcast Panel</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      width: 400px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+    h2 { margin-bottom: 20px; }
+    textarea {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      resize: none;
+      margin-bottom: 20px;
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+    }
+    button {
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    button:hover { transform: scale(1.05); }
+    #result {
+      margin-top: 20px;
+      font-size: 14px;
+      text-align: left;
+      white-space: pre-wrap;
+      background: rgba(255,255,255,0.1);
+      padding: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🚀 Telegram Broadcast Panel</h2>
+    <form id="broadcastForm">
+      <textarea id="message" rows="4" placeholder="Type your broadcast message..."></textarea><br>
+      <button type="submit">Send Broadcast</button>
+    </form>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    document.getElementById("broadcastForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const message = document.getElementById("message").value;
+
+      // Apna Vercel endpoint yahan daalo
+      const url = "https://telegrambrodcast.vercel.app/broadcast";
+
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message })
+        });
+        const data = await response.json();
+        document.getElementById("result").innerText = JSON.stringify(data, null, 2);
+      } catch (err) {
+        document.getElementById("result").innerText = "Error: " + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
